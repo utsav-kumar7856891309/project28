@@ -35,9 +35,39 @@
 //     }
 //     result.textContent = "Result: " + output;
 // }
-function updateclcok(){
-    const now= new Date();
-    const time=now.toLocaleTimeString();
-    document.getElementById('clock').textContent=time;
+// function updateclcok(){
+//     const now= new Date();
+//     const time=now.toLocaleTimeString();
+//     document.getElementById('clock').textContent=time;
+// }
+// setInterval(updateclcok,1000);
+// function addtask(){
+//     const task=document.getElementById('task').value;
+//     if(task.trim()==="") return;
+//     const list=document.getElementById('tasklist');
+//     const listItem=document.createElement('li');
+//     listItem.textContent=task;
+//     list.appendChild(listItem);
+    
+// }
+// const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+
+// function gerneratepassword() {
+//     let password = "";
+//     for (let i = 0; i < 12; i++) {
+//         const randomIndex = Math.floor(Math.random() * characters.length);
+//         password += characters[randomIndex];
+//     }
+//     document.getElementById('password').textContent = password;
+// }
+function calculate(){
+    const weight =parseFloat(document.getElementById('weight').value);
+    const height =parseFloat(document.getElementById('height').value);
+    const result=document.getElementById('result');
+    if(isNaN(weight)|| isNaN(height)){
+        result.textContent="Please enter valid numbers";
+        return ;
+    }
+    const bmi=(weight/(height*height)).toFixed(2);
+    result.textContent=`Your BMI: ${bmi}`;
 }
-setInterval(updateclcok,1000);
