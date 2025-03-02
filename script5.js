@@ -60,14 +60,68 @@
 //     }
 //     document.getElementById('password').textContent = password;
 // }
-function calculate(){
-    const weight =parseFloat(document.getElementById('weight').value);
-    const height =parseFloat(document.getElementById('height').value);
-    const result=document.getElementById('result');
-    if(isNaN(weight)|| isNaN(height)){
-        result.textContent="Please enter valid numbers";
-        return ;
+// function calculate(){
+//     const weight =parseFloat(document.getElementById('weight').value);
+//     const height =parseFloat(document.getElementById('height').value);
+//     const result=document.getElementById('result');
+//     if(isNaN(weight)|| isNaN(height)){
+//         result.textContent="Please enter valid numbers";
+//         return ;
+//     }
+//     const bmi=(weight/(height*height)).toFixed(2);
+//     result.textContent=`Your BMI: ${bmi}`;
+// }
+let expenses = [];
+const expenseList = document.getElementById('expenseList');
+const totalAmount = document.getElementById('totalAmount');
+const addBtn = document.getElementById('addBtn');
+
+addBtn.addEventListener('click', addExpense);
+
+function addExpense() {
+    const name = document.getElementById('expenseName').value.trim();
+    const amount = parseFloat(document.getElementById('expenseAmount').value.trim());
+
+    if (name === '' || isNaN(amount) || amount <= 0) {
+        alert('Please enter a valid expense name and amount.');
+        return;
     }
-    const bmi=(weight/(height*height)).toFixed(2);
-    result.textContent=`Your BMI: ${bmi}`;
+
+    const expense = { id: Date.now(), name, amount };
+    expenses.push(expense);
+    updateUI();
+    clearInputs();
 }
+
+function deleteExpense(id) {
+    expenses = expenses.filter(expense => expense.id !== id);
+    updateUI();
+}
+
+function updateUI() {
+    expenseList.innerHTML = '';
+    let total = 0;
+
+    expenses.forEach(expense => {
+        total += expense.amount;
+        const li = document.createElement('li');
+        li.innerHTML = `${expense.name}: ₹${expense.amount} 
+            <button class="delete-btn" onclick="deleteExpense(${expense.id})">Delete</button>`;
+        expenseList.appendChild(li);
+    });
+
+    totalAmount.textContent = total;
+}
+
+function clearInputs() {
+    document.getElementById('expenseName').value = '';
+    document.getElementById('expenseAmount').value = '';
+}
+
+
+
+
+
+
+
+
