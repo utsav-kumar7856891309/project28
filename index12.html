@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator</title>
+</head>
+<body>
+    <h1>Invoice Generator</h1>
+    
+    <label for="companyName">Company Name:</label>
+    <input type="text" id="companyName" placeholder="Enter company name"><br><br>
+
+    <label for="clientName">Client Name:</label>
+    <input type="text" id="clientName" placeholder="Enter client name"><br><br>
+
+    <label for="items">Item:</label>
+    <input type="text" id="itemName" placeholder="Item name">
+    <input type="number" id="itemPrice" placeholder="Price">
+    <button onclick="addItem()">Add Item</button><br><br>
+
+    <ul id="itemList"></ul>
+
+    <h3>Total: $<span id="total">0.00</span></h3>
+
+    <button onclick="generatePDF()">Generate PDF</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+    <script src="script5.js"></script>
+</body>
+</html>
